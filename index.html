@@ -46,6 +46,45 @@
 .gallery-collection figure:first-child,.gallery-collection .landscape-artwork{grid-column:1/-1}
 .gallery-collection img{max-height:70vh}
 @media(max-width:600px){.project-banner .project-image.artwork-frame{aspect-ratio:1280/562}.project-banner .image-index{top:10px;left:10px;font-size:6px;padding:4px 6px}.project-banner .view-count{top:10px;right:10px;font-size:6px;padding:4px 6px}.project-banner .project-view{width:29px;height:29px;bottom:10px;right:10px}.project-banner .project-view .icon-arrow{width:15px;height:15px}.dialog-gallery.gallery-collection{grid-template-columns:1fr}.gallery-collection figure{grid-column:1}.project:not(.project-wide) .view-count{font-size:6px;padding:6px}}
+.work-group{margin-bottom:72px}
+.work-group[hidden]{display:none}
+.group-title{font-family:var(--display);font-size:clamp(24px,2.6vw,36px);font-weight:500;letter-spacing:-.04em;display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.group-title span{font-family:var(--font);font-size:11px;letter-spacing:0;color:var(--muted)}
+.track{display:flex;gap:28px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;touch-action:pan-x pan-y;padding-bottom:18px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#444 transparent}
+.track>.project{flex:0 0 clamp(260px,30vw,440px);scroll-snap-align:start;margin:0}
+.track>.project-wide{flex-basis:clamp(340px,44vw,700px)}
+.track>.project[hidden]{display:none}
+@media(max-width:600px){
+  .track{gap:18px}
+  .track>.project{flex-basis:78vw}
+  .track>.project-wide{flex-basis:88vw}
+}
+/* Horizontal stack: each poster slides in from the right over the previous one */
+.work-group{margin:0;height:calc(var(--n,1) * 100vh);position:relative}
+.stack-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;padding:120px 6% 40px;box-sizing:border-box}
+.stack-pin .group-title{flex:none;margin-bottom:20px;position:relative;z-index:50}
+.track.stack-h{display:block;position:relative;flex:1;min-height:0;overflow:visible;padding:0;scroll-snap-type:none}
+.track.stack-h>.project{position:absolute;left:50%;top:50%;width:min(560px,90vw);margin:0;flex:none;background:var(--bg);transform:translate(calc(-50% + var(--x,0vw)),-50%);will-change:transform}
+.track.stack-h>.project:nth-child(1){z-index:1}
+.track.stack-h>.project:nth-child(2){z-index:2}
+.track.stack-h>.project:nth-child(3){z-index:3}
+.track.stack-h>.project.project-wide{width:min(900px,90vw)}
+@media(max-width:600px){
+  .stack-pin{padding:95px 5% 30px}
+  .track.stack-h>.project{width:88vw}
+  .track.stack-h>.project.project-wide{width:92vw}
+}
+@media(prefers-reduced-motion:reduce){.track.stack-h>.project{transform:translate(-50%,-50%)}}
+/* Depth: incoming posters rotate in from the right, covered ones recede */
+.track.stack-h>.project{transform:perspective(1400px) translate(calc(-50% + var(--x,0vw) + var(--cx,0vw)),-50%) rotateY(var(--ry,0deg)) scale(var(--s,1));transform-origin:center center;box-shadow:0 30px 60px -20px #000b}
+.stack-pin{perspective:1400px}
+@media(prefers-reduced-motion:reduce){.track.stack-h>.project{transform:translate(-50%,-50%)}}
+.lanyard-root{height:560px;position:relative;margin:56px 0 0;overflow:hidden}
+@media(max-width:600px){.lanyard-root{height:420px}}
+/* Title sits directly above the stack; cards start right under it */
+.track.stack-h>.project{top:0;transform:perspective(1400px) translate(calc(-50% + var(--x,0vw) + var(--cx,0vw)),0) rotateY(var(--ry,0deg)) scale(var(--s,1))}
+.track.stack-h{margin-top:0}
+@media(prefers-reduced-motion:reduce){.track.stack-h>.project{transform:translate(-50%,0)}}
   </style>
 </head>
 <body>
@@ -66,61 +105,129 @@
       <div class="section-heading"><div><p class="eyebrow">01 / DESIGN IN PRACTICE</p><h2 id="work-title">Selected work<span class="count">(08)</span></h2></div><p class="section-aside">Different expressions.<br>The same attention to detail.</p></div>
       <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects"><button type="button" class="filter active" data-filter="all" aria-pressed="true">All work <span>08</span></button><button type="button" class="filter" data-filter="lanyards" aria-pressed="false">Lanyards</button><button type="button" class="filter" data-filter="posters" aria-pressed="false">Posters & campaigns</button><button type="button" class="filter" data-filter="apparel" aria-pressed="false">Apparel</button></div><span class="concept-label">SELECTED PROJECTS</span></div>
       <p id="filter-status" class="sr-only" role="status" aria-live="polite">Showing all 8 projects</p>
-      <div class="project-grid">
-        <article class="project project-wide project-banner" data-category="posters">
-          <button type="button" class="project-open" data-project="mexikanto" aria-label="View Mexikanto — The Nacho Club, 5 designs">
-            <div class="project-image artwork-frame"><img src="assets/mexikanto-hungry-banner.jpg" alt="Orange Mexikanto campaign banner with Hungry? We Got You typography, nachos, mascot stickers, and a crossword graphic" width="1280" height="562" loading="lazy"><span class="image-index">01 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span><span class="view-count">05 DESIGNS</span></div>
-            <div class="project-meta"><div><h3>Mexikanto — The Nacho Club</h3><p>Big flavor. A playful visual identity.</p></div><span class="project-category">BRANDING &amp; CAMPAIGN</span></div>
-          </button>
-        </article>
-        <article class="project" data-category="posters">
-          <button type="button" class="project-open" data-project="code-dark" aria-label="View Code in the Dark">
-            <div class="project-image artwork-frame"><img src="assets/code-in-the-dark.jpg" alt="Code in the Dark event poster with electric-blue typography, grain, and a dark grid" width="1280" height="1280" loading="lazy"><span class="image-index">02 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
-            <div class="project-meta"><div><h3>Code in the Dark</h3><p>A glow in the dark. An idea in focus.</p></div><span class="project-category">POSTERS &amp; CAMPAIGNS</span></div>
-          </button>
-        </article>
-        <article class="project" data-category="posters">
-          <button type="button" class="project-open" data-project="playhouse" aria-label="View The Playhouse Project">
-            <div class="project-image artwork-frame"><img src="assets/playhouse-climate-action.jpg" alt="The Playhouse Project climate-action graphic with a green envelope, crayons, layered paper, and colorful flowers" width="1024" height="1280" loading="lazy"><span class="image-index">03 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
-            <div class="project-meta"><div><h3>The Playhouse Project</h3><p>Climate action, with a playful spirit.</p></div><span class="project-category">POSTERS &amp; CAMPAIGNS</span></div>
-          </button>
-        </article>
-        <article class="project" data-category="lanyards">
-          <button type="button" class="project-open" data-project="computing-society" aria-label="View Computing Society">
-            <div class="project-image artwork-frame"><img src="assets/computing-society-lanyard.jpg" alt="Black-and-orange Computing Society lanyard showing assembled and flat views with Stay in CTRL typography" width="904" height="1280" loading="lazy"><span class="image-index">04 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
-            <div class="project-meta"><div><h3>Computing Society</h3><p>Stay in CTRL. Stand out in print.</p></div><span class="project-category">LANYARD DESIGN</span></div>
-          </button>
-        </article>
-        <article class="project" data-category="lanyards">
-          <button type="button" class="project-open" data-project="acm-lanyard" aria-label="View ACM — Build the Future">
-            <div class="project-image artwork-frame"><img src="assets/acm-build-the-future-lanyard.jpg" alt="Blue-and-white AUF ACM lanyard with Build the Future text and geometric graphics in assembled and flat views" width="904" height="1280" loading="lazy"><span class="image-index">05 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
-            <div class="project-meta"><div><h3>ACM — Build the Future</h3><p>An identity that moves with you.</p></div><span class="project-category">LANYARD DESIGN</span></div>
-          </button>
-        </article>
-        <article class="project" data-category="posters">
-          <button type="button" class="project-open" data-project="bo-han" aria-label="View Bo Han — Speaker Program">
-            <div class="project-image artwork-frame"><img src="assets/bo-han-speaker-poster.jpg" alt="Blue Distinguished Speaker Program poster with a portrait of Bo Han and details of a foundation-models talk" width="1280" height="1024" loading="lazy"><span class="image-index">06 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
-            <div class="project-meta"><div><h3>Bo Han — Speaker Program</h3><p>A strong voice. A clear visual presence.</p></div><span class="project-category">POSTERS &amp; CAMPAIGNS</span></div>
-          </button>
-        </article>
-        <article class="project" data-category="apparel">
-          <button type="button" class="project-open" data-project="nonform" aria-label="View Nonform — Apparel Collection, 5 designs">
-            <div class="project-image artwork-frame"><img src="assets/nf-graphic-raglan.jpg" alt="Blue-and-white long-sleeve raglan shirt with three monkey graphics, a chest monogram, and script sleeve lettering" width="1280" height="1280" loading="lazy"><span class="image-index">07 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span><span class="view-count">05 DESIGNS</span></div>
-            <div class="project-meta"><div><h3>Nonform — Apparel Collection</h3><p>Five expressions. One wearable identity.</p></div><span class="project-category">APPAREL DESIGN</span></div>
-          </button>
-        </article>
-        <article class="project project-wide" data-category="apparel">
-          <button type="button" class="project-open" data-project="acm-active" aria-label="View AUF ACM — Active 2026">
-            <div class="project-image artwork-frame paired-artwork"><img src="assets/acm-active-shirt-front.jpg" alt="Front of a white ACM shirt with a small blue keyboard-key graphic on the chest" width="1280" height="1280" loading="lazy"><img src="assets/acm-active-shirt-back.jpg" alt="Back of a white AUF ACM Active 2026 shirt with blue retro-computer artwork and Build the Future lettering" width="1280" height="1280" loading="lazy"><span class="image-index">08 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span><span class="view-count">FRONT + BACK</span></div>
-            <div class="project-meta"><div><h3>AUF ACM — Active 2026</h3><p>Build the future. Wear the identity.</p></div><span class="project-category">APPAREL DESIGN</span></div>
-          </button>
-        </article>
+      <div class="work-group" data-group="posters" style="--n:8">
+        <div class="stack-pin">
+          <h3 class="group-title">Posters &amp; campaigns <span>08</span></h3>
+          <div class="track stack-h">
+          <article class="project" data-category="posters">
+              <button type="button" class="project-open" data-project="code-dark" aria-label="View Code in the Dark">
+                <div class="project-image artwork-frame"><img src="assets/code-in-the-dark.jpg" alt="Code in the Dark event poster with electric-blue typography, grain, and a dark grid" width="1280" height="1280" loading="lazy"><span class="image-index">02 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+                <div class="project-meta"><div><h3>Code in the Dark</h3><p>A glow in the dark. An idea in focus.</p></div><span class="project-category">POSTERS &amp; CAMPAIGNS</span></div>
+              </button>
+            </article>
+          <article class="project" data-category="posters">
+              <button type="button" class="project-open" data-project="playhouse" aria-label="View The Playhouse Project">
+                <div class="project-image artwork-frame"><img src="assets/playhouse-climate-action.jpg" alt="The Playhouse Project climate-action graphic with a green envelope, crayons, layered paper, and colorful flowers" width="1024" height="1280" loading="lazy"><span class="image-index">03 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+                <div class="project-meta"><div><h3>The Playhouse Project</h3><p>Climate action, with a playful spirit.</p></div><span class="project-category">POSTERS &amp; CAMPAIGNS</span></div>
+              </button>
+            </article>
+          <article class="project" data-category="posters">
+              <button type="button" class="project-open" data-project="bo-han" aria-label="View Bo Han — Speaker Program">
+                <div class="project-image artwork-frame"><img src="assets/bo-han-speaker-poster.jpg" alt="Blue Distinguished Speaker Program poster with a portrait of Bo Han and details of a foundation-models talk" width="1280" height="1024" loading="lazy"><span class="image-index">06 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+                <div class="project-meta"><div><h3>Bo Han — Speaker Program</h3><p>A strong voice. A clear visual presence.</p></div><span class="project-category">POSTERS &amp; CAMPAIGNS</span></div>
+              </button>
+            </article>
+          <article class="project" data-category="posters">
+            <button type="button" class="project-open" data-project="mexikanto" aria-label="View Campaign banner">
+              <div class="project-image artwork-frame"><img src="assets/mexikanto-hungry-banner.jpg" alt="Orange Mexikanto campaign banner with Hungry? We Got You typography, nachos, mascot stickers, and a crossword graphic" width="1280" height="562" loading="lazy"><span class="image-index">01 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Campaign banner</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="posters">
+            <button type="button" class="project-open" data-project="mexikanto" aria-label="View The Original Nacho Club">
+              <div class="project-image artwork-frame"><img src="assets/mexikanto-nacho-club.jpg" alt="Orange The Original Nacho Club typographic graphic with a subtle illustrated mascot in the background" width="1024" height="1280" loading="lazy"><span class="image-index">02 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>The Original Nacho Club</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="posters">
+            <button type="button" class="project-open" data-project="mexikanto" aria-label="View Product promotion">
+              <div class="project-image artwork-frame"><img src="assets/mexikanto-loaded-nachos.jpg" alt="Mexikanto loaded-nachos promotion with food photography, large yellow typography, and a green information panel" width="1024" height="1280" loading="lazy"><span class="image-index">03 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Product promotion</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="posters">
+            <button type="button" class="project-open" data-project="mexikanto" aria-label="View Launch teaser">
+              <div class="project-image artwork-frame"><img src="assets/mexikanto-dipping-soon.jpg" alt="Dipping Soon teaser graphic showing a branded paper bag emerging from an orange slot" width="1024" height="1280" loading="lazy"><span class="image-index">04 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Launch teaser</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="posters">
+            <button type="button" class="project-open" data-project="mexikanto" aria-label="View Mascot &amp; brand banner">
+              <div class="project-image artwork-frame"><img src="assets/mexikanto-mascot-banner.jpg" alt="Mexikanto illustrated food-stall banner with a smiling nacho mascot, traffic light, and orange grid background" width="1280" height="426" loading="lazy"><span class="image-index">05 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Mascot &amp; brand banner</h3></div></div>
+            </button>
+          </article>
+          </div>
+        </div>
+      </div>
+      <div class="work-group" data-group="lanyards" style="--n:2">
+        <div class="stack-pin">
+          <h3 class="group-title">Lanyard design <span>02</span></h3>
+          <div class="track stack-h">
+          <article class="project" data-category="lanyards">
+              <button type="button" class="project-open" data-project="computing-society" aria-label="View Computing Society">
+                <div class="project-image artwork-frame"><img src="assets/computing-society-lanyard.jpg" alt="Black-and-orange Computing Society lanyard showing assembled and flat views with Stay in CTRL typography" width="904" height="1280" loading="lazy"><span class="image-index">04 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+                <div class="project-meta"><div><h3>Computing Society</h3><p>Stay in CTRL. Stand out in print.</p></div><span class="project-category">LANYARD DESIGN</span></div>
+              </button>
+            </article>
+          <article class="project" data-category="lanyards">
+              <button type="button" class="project-open" data-project="acm-lanyard" aria-label="View ACM — Build the Future">
+                <div class="project-image artwork-frame"><img src="assets/acm-build-the-future-lanyard.jpg" alt="Blue-and-white AUF ACM lanyard with Build the Future text and geometric graphics in assembled and flat views" width="904" height="1280" loading="lazy"><span class="image-index">05 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+                <div class="project-meta"><div><h3>ACM — Build the Future</h3><p>An identity that moves with you.</p></div><span class="project-category">LANYARD DESIGN</span></div>
+              </button>
+            </article>
+          </div>
+        </div>
+      </div>
+      <div class="work-group" data-group="apparel" style="--n:6">
+        <div class="stack-pin">
+          <h3 class="group-title">Apparel design <span>06</span></h3>
+          <div class="track stack-h">
+          <article class="project project-wide" data-category="apparel">
+              <button type="button" class="project-open" data-project="acm-active" aria-label="View AUF ACM — Active 2026">
+                <div class="project-image artwork-frame paired-artwork"><img src="assets/acm-active-shirt-front.jpg" alt="Front of a white ACM shirt with a small blue keyboard-key graphic on the chest" width="1280" height="1280" loading="lazy"><img src="assets/acm-active-shirt-back.jpg" alt="Back of a white AUF ACM Active 2026 shirt with blue retro-computer artwork and Build the Future lettering" width="1280" height="1280" loading="lazy"><span class="image-index">08 / 08</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span><span class="view-count">FRONT + BACK</span></div>
+                <div class="project-meta"><div><h3>AUF ACM — Active 2026</h3><p>Build the future. Wear the identity.</p></div><span class="project-category">APPAREL DESIGN</span></div>
+              </button>
+            </article>
+          <article class="project" data-category="apparel">
+            <button type="button" class="project-open" data-project="nonform" aria-label="View Graphic raglan">
+              <div class="project-image artwork-frame"><img src="assets/nf-graphic-raglan.jpg" alt="Blue-and-white long-sleeve raglan shirt with three monkey graphics, a chest monogram, and script sleeve lettering" width="1280" height="1280" loading="lazy"><span class="image-index">01 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Graphic raglan</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="apparel">
+            <button type="button" class="project-open" data-project="nonform" aria-label="View Red jersey / 27">
+              <div class="project-image artwork-frame"><img src="assets/nonform-red-jersey.jpg" alt="Red Nonform jersey with white 27 lettering and dark curved graphic panels" width="1024" height="1280" loading="lazy"><span class="image-index">02 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Red jersey / 27</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="apparel">
+            <button type="button" class="project-open" data-project="nonform" aria-label="View Blue &amp; black jersey">
+              <div class="project-image artwork-frame"><img src="assets/nonform-blue-black-jersey.jpg" alt="Blue-and-black Nonform jersey with vertical gradient stripes and curved white piping" width="1280" height="1280" loading="lazy"><span class="image-index">03 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Blue &amp; black jersey</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="apparel">
+            <button type="button" class="project-open" data-project="nonform" aria-label="View Collared jersey">
+              <div class="project-image artwork-frame"><img src="assets/nonform-collared-jersey.jpg" alt="Burgundy, navy, and cream Nonform collared jersey with sweeping geometric panels" width="1280" height="1280" loading="lazy"><span class="image-index">04 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Collared jersey</h3></div></div>
+            </button>
+          </article>
+          <article class="project" data-category="apparel">
+            <button type="button" class="project-open" data-project="nonform" aria-label="View Jacket design">
+              <div class="project-image artwork-frame"><img src="assets/nonform-jacket.jpg" alt="Dark green Nonform jacket with a dark collar, gold buttons, and a small gold chest wordmark" width="1280" height="1280" loading="lazy"><span class="image-index">05 / 05</span><span class="project-view" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+              <div class="project-meta"><div><h3>Jacket design</h3></div></div>
+            </button>
+          </article>
+          </div>
+        </div>
       </div>
       <p class="work-note">From food-brand campaigns and event posters to lanyards and apparel — eight projects, seventeen designs, and a range of visual perspectives.</p>
     </section>
     <section id="about" class="about-section wrap" aria-labelledby="about-title">
       <div class="about-top"><p class="eyebrow">02 / THE DESIGNER BEHIND THE WORK</p><span class="red-asterisk" aria-hidden="true"><svg class="icon-asterisk" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M24 3v42M3 24h42M9 9l30 30M9 39 39 9"/></svg></span></div>
       <div class="about-grid"><h2 id="about-title">A clear idea.<br>A considered form.<br><em>A lasting impression.</em></h2><div class="about-copy"><p class="about-lead">I’m Jacob Antonio,<br>a creative graphic designer.</p><p>I’m drawn to the power of simplicity — where typography, space, and a deliberate detail can say more than a hundred elements.</p><p>My approach brings clarity and character together, turning ideas into visual stories that feel focused, expressive, and distinctly their own.</p><div class="about-signature">Jacob Antonio<span>CREATIVE GRAPHIC DESIGNER</span></div></div></div>
+      <div id="lanyard-root" class="lanyard-root" aria-label="Interactive 3D lanyard badge"></div>
       <div class="disciplines"><p class="eyebrow">MY CREATIVE FOCUS</p><div><span>01</span><h3>Identity & print</h3><p>Lanyards · Organization graphics · Print design</p><span class="discipline-arrow" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div><div><span>02</span><h3>Posters & campaigns</h3><p>Event visuals · Campaign graphics · Typography</p><span class="discipline-arrow" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div><div><span>03</span><h3>Apparel graphics</h3><p>T-shirts · Wearable identities · Illustration</p><span class="discipline-arrow" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div></div>
     </section>
     <section id="contact" class="contact-section" aria-labelledby="contact-title"><div class="wrap"><div class="contact-top"><p class="eyebrow">03 / START A CONVERSATION</p><span class="contact-mark" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div><h2 id="contact-title">Good things start<br>with <em>a hello.</em></h2><div class="contact-bottom"><p>Have an idea in mind?<br>Let’s give it a visual voice.</p><a href="mailto:antoniojacob2007@gmail.com" class="contact-cta">LET’S MAKE SOMETHING <span aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></div><div class="contact-details"><a href="mailto:antoniojacob2007@gmail.com">antoniojacob2007@gmail.com</a><button type="button" id="copy-email" aria-label="Copy email address">COPY EMAIL <span aria-hidden="true">+</span></button><span class="social-handle">SOCIAL <span>@jacoblugn</span></span><span id="copy-status" class="sr-only" role="status" aria-live="polite"></span></div></div></section>
@@ -338,6 +445,7 @@ filters.forEach(button=>button.addEventListener('click',()=>{
   filters.forEach(item=>{const active=item===button;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));});
   let count=0;
   document.querySelectorAll('.project').forEach(project=>{project.hidden=filter!=='all'&&project.dataset.category!==filter;if(!project.hidden)count++;});
+  document.querySelectorAll('.work-group').forEach(group=>{group.hidden=filter!=='all'&&group.dataset.group!==filter;});
   document.getElementById('filter-status').textContent=`Showing ${count} ${count===1?'project':'projects'}`;
 }));
 const projectDialog=document.getElementById('project-dialog');
@@ -382,6 +490,33 @@ document.getElementById('copy-email').addEventListener('click',async()=>{
   }catch{status.textContent='Select the email address to copy it, or click it to open your email app.';button.textContent='SELECT EMAIL TO COPY';}
 });
 document.getElementById('year').textContent=new Date().getFullYear();
+
+const stackGroups=[...document.querySelectorAll('.work-group')];
+const clamp01=v=>Math.min(1,Math.max(0,v));
+function updateStacks(){
+  stackGroups.forEach(group=>{
+    if(group.hidden)return;
+    const cards=[...group.querySelectorAll('.track.stack-h>.project:not([hidden])')];
+    const n=cards.length;if(!n)return;
+    const rect=group.getBoundingClientRect();
+    const total=group.offsetHeight-window.innerHeight;
+    const p=total<=0?1:clamp01(-rect.top/total);
+    cards.forEach((card,i)=>{
+      const enter=i===0?1:clamp01(p*(n-1)-(i-1));
+      const cover=i>=n-1?0:clamp01(p*(n-1)-i);
+      card.style.zIndex=String(i+1);
+      card.style.setProperty('--x',((1-enter)*100)+'vw');
+      card.style.setProperty('--ry',(-38*(1-enter))+'deg');
+      card.style.setProperty('--cx',(-cover*3)+'vw');
+      card.style.setProperty('--s',String(1-cover*0.05));
+    });
+  });
+}
+let stackFrame=0;
+window.addEventListener('scroll',()=>{cancelAnimationFrame(stackFrame);stackFrame=requestAnimationFrame(updateStacks);},{passive:true});
+window.addEventListener('resize',updateStacks);
+updateStacks();
   </script>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
